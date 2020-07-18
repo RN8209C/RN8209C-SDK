@@ -440,27 +440,69 @@ void rn8209_process(uint8_t cmd_mode)
 				rn8209c_calibrate_current_offset(phase_A);
 			}
 			rn8209c_read_voltage(&rn8209_value.voltage);
-    			rn8209c_read_power(phase_A,&rn8209_value.power);
-    			rn8209c_read_current(phase_A,&rn8209_value.current);
-			cJSON *resp = cJSON_CreateObject();
-			cJSON_AddNumberToObject(resp,"set",2);	
-			cJSON_AddNumberToObject(resp,"step",calibrate_step);
-			cJSON_AddNumberToObject(resp,"voltage",rn8209_value.voltage);
-			cJSON_AddNumberToObject(resp,"current",rn8209_value.current);
-			cJSON_AddNumberToObject(resp,"power",rn8209_value.power);
-			char *data_p = cJSON_PrintUnformatted(resp);
-			if(data_p)
-			{
-				cmd_uart_tx((uint8_t *)data_p,strlen(data_p));
-				free(data_p);
+    		//	rn8209c_read_power(phase_A,&rn8209_value.power);
+    		//	rn8209c_read_current(phase_A,&rn8209_value.current);
+    			{
+				uint8_t ret = rn8209c_read_emu_status();
+				if(ret)
+				{
+					uint32_t temp_current=0 ;
+					uint32_t temp_power=0 ;
+					rn8209c_read_current(phase_A,&temp_current);
+					rn8209c_read_power(phase_A,&temp_power);
+					if(ret==1)
+					{
+						rn8209_value.current = temp_current;
+						rn8209_value.power  = temp_power;
+					}
+					else
+					{
+						rn8209_value.current = (int32_t)temp_current*(-1);
+						rn8209_value.power = (int32_t)temp_power *(-1);
+					}
+				}
 			}
-			cJSON_Delete(resp);
+			{
+				cJSON *resp = cJSON_CreateObject();
+				cJSON_AddNumberToObject(resp,"set",2);	
+				cJSON_AddNumberToObject(resp,"step",calibrate_step);
+				cJSON_AddNumberToObject(resp,"voltage",rn8209_value.voltage);
+				cJSON_AddNumberToObject(resp,"current",rn8209_value.current);
+				cJSON_AddNumberToObject(resp,"power",rn8209_value.power);
+				char *data_p = cJSON_PrintUnformatted(resp);
+				if(data_p)
+				{
+					cmd_uart_tx((uint8_t *)data_p,strlen(data_p));
+					free(data_p);
+				}
+				cJSON_Delete(resp);
+			}
 			mode = 2;
 			break;
 		case 2:
 			rn8209c_read_voltage(&rn8209_value.voltage);
-    			rn8209c_read_power(phase_A,&rn8209_value.power);
-    			rn8209c_read_current(phase_A,&rn8209_value.current);
+			{
+				uint8_t ret = rn8209c_read_emu_status();
+				if(ret)
+				{
+					uint32_t temp_current=0 ;
+					uint32_t temp_power=0 ;
+					rn8209c_read_current(phase_A,&temp_current);
+					rn8209c_read_power(phase_A,&temp_power);
+					if(ret==1)
+					{
+						rn8209_value.current = temp_current;
+						rn8209_value.power  = temp_power;
+					}
+					else
+					{
+						rn8209_value.current = (int32_t)temp_current*(-1);
+						rn8209_value.power = (int32_t)temp_power *(-1);
+					}
+				}
+			}
+    			//rn8209c_read_power(phase_A,&rn8209_value.power);
+    			//rn8209c_read_current(phase_A,&rn8209_value.current);
 			break;
 		case 3:
 			break;

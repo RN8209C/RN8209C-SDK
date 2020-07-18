@@ -1262,7 +1262,24 @@ uint8_t rn8209c_read_power_energy(uint8_t phase,uint32_t *p)
 
     return 1;
 }
+uint8_t rn8209c_read_emu_status()
+{
+	uint8_t  regbuf[3];
+    	uint32_t tempValue;
+//   double dtemp;
+    	uint8_t reg=REG_EMUStatus;
 
+    	if(s_rn8209c_read(reg,regbuf,3)==0)
+    	{
+        	tempValue = (regbuf[0]<<16)+(regbuf[1]<<8)+(regbuf[2]);
+		if(tempValue &0x00020000)
+			return 2;
+		else
+       		return 1;
+    	}
+
+    return 0;
+}
 
 /********************************************************
 功能描述：   读取无功功率,默认为通道A

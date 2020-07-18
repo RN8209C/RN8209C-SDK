@@ -5,7 +5,7 @@
 #include "string.h"
 
 #include "rn8209c_u.h"
-
+#define    SDK_VER   "V1.0.4"
 #define 	RN8209_TASK_STACK_SIZE	4096
 #define 	RN8209_TASK_PRIO			7
 #define	MAC						"123456789012"
@@ -14,8 +14,8 @@
 struct rn8209
 {
 	uint32_t voltage;
-	uint32_t current;
-	uint32_t power;
+	int32_t current;
+	int32_t power;
 };
 extern struct rn8209 rn8209_value;
 

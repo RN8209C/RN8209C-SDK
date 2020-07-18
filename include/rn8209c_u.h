@@ -129,7 +129,7 @@ uint8_t rn8209c_read_current(uint8_t phase,uint32_t *current);/* 扩大10000倍*/
 uint8_t rn8209c_read_power(uint8_t phase,uint32_t *p);/*扩大10000倍*/
 uint8_t rn8209c_read_power_energy(uint8_t phase,uint32_t *p); /*扩大1000倍*/
 uint8_t rn8209c_read_power_Q(uint8_t phase,uint32_t *p);/*扩大10000*/
-
+uint8_t rn8209c_read_emu_status();
 
 void rn8209c_calibrate_voltage_current(uint8_t phase,uint32_t voltage_real,uint32_t current_real );  /*1.0 将校表台电压设置220V,5A, 1.0功率校准*/
 void rn8209c_calibrate_power_k(uint8_t phase,uint32_t ku,uint32_t ki);/*2.0 将校表台电压设置220V,5A, 1.0功率校准*/

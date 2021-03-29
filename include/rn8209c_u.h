@@ -1,4 +1,18 @@
-
+/*************************************************************************
+*   	Copyright 2019-2021  MOKO TECHNOLOGY LTD
+*
+*	Licensed under the Apache License, Version 2.0 (the "License");   
+*	you may not use this file except in compliance with the License.   
+*	You may obtain a copy of the License at  
+*
+*	http://www.apache.org/licenses/LICENSE-2.0   
+*
+*	Unless required by applicable law or agreed to in writing, software   
+*	distributed under the License is distributed on an "AS IS" BASIS,   
+*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   
+*	See the License for the specific language governing permissions and   
+*	limitations under the License.
+**************************************************************************/
 #ifndef RN8209_U_H__
 #define RN8209_U_H__
 
@@ -122,7 +136,7 @@ bool rn8209c_init( rn8209c_delay_ms_fun delay,\
                   STU_8209C param);/*接口初始化*/
 
 
-uint8_t rn8209c_init_para( );
+uint8_t rn8209c_init_para( void);
 
 uint8_t rn8209c_read_voltage(uint32_t *vol);/*扩大1000倍*/
 uint8_t rn8209c_read_current(uint8_t phase,uint32_t *current);/* 扩大10000倍*/
@@ -138,9 +152,11 @@ void rn8209c_calibrate_power_offset(uint8_t phase,uint32_t power_ref);/* 4.0 5% 
 void rn8209c_calibrate_power_Q(uint8_t phase,uint32_t power_q_ref);/*5.0 将校表台电压设置220V,16A, 0.5无功校准*/
 void rn8209c_calibrate_current_offset(uint8_t phase) ;/*6.0 电流Offset校正将校表台电压设置220V,0A,1.0，只提供电压*/
 
-STU_8209C read_stu8209c_calibrate_param();
-void rn8209c_calibrate_power_k_phase_a();
-void rn8209c_calibrate_power_k_phase_b();
+STU_8209C read_stu8209c_calibrate_param(void);
+void rn8209c_calibrate_power_k_phase_a(void);
+void rn8209c_calibrate_power_k_phase_b(void);
+uint8_t rn8209c_read_energy(uint32_t *energy);
+extern  float  kp;
 
 #endif
 

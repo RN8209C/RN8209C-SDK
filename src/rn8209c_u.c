@@ -1,9 +1,20 @@
-#include "rn8209c_u.h"
-//#include "lwip/err.h"
-//#include "lwip/sockets.h"
-//#include "lwip/sys.h"
-//#include <lwip/netdb.h>
+/*************************************************************************
+*   	Copyright 2019-2021  MOKO TECHNOLOGY LTD
+*
+*	Licensed under the Apache License, Version 2.0 (the "License");   
+*	you may not use this file except in compliance with the License.   
+*	You may obtain a copy of the License at  
+*
+*	http://www.apache.org/licenses/LICENSE-2.0   
+*
+*	Unless required by applicable law or agreed to in writing, software   
+*	distributed under the License is distributed on an "AS IS" BASIS,   
+*	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   
+*	See the License for the specific language governing permissions and   
+*	limitations under the License.
+**************************************************************************/
 
+#include "rn8209c_u.h"
 
 static STU_8209C Stu8209c;
 
@@ -12,7 +23,7 @@ rn8209c_uart_tx_fun rn8209c_uart_tx;
 rn8209c_uart_rx_fun rn8209c_uart_rx;
 rn8209c_tx_pin_reset_fun rn8209c_tx_pin_reset;
 static uint16_t hfconst;
-static float  kp;
+float  kp;
 
 void get_user_param(STU_8209C user)
 {
@@ -26,6 +37,7 @@ void get_user_param(STU_8209C user)
 		temp = 16.1079*Stu8209c.KV*Stu8209c.R*4*16*100000/Stu8209c.EC;
 		hfconst = (uint16_t)temp;
 	}
+	rn8209c_debug("hfconst is %d\n",hfconst);
 	if(Stu8209c.EC ==0)
 		Stu8209c.EC = 3200;
 	//  3.22155*10^12/(2^32) = 750
@@ -36,15 +48,15 @@ void get_user_param(STU_8209C user)
 	rn8209c_debug(" param kia is %d\n",Stu8209c.Kia);
 	
 }
-STU_8209C read_stu8209c_calibrate_param()
+STU_8209C read_stu8209c_calibrate_param(void)
 {
 	return Stu8209c;
 }
-void rn8209c_calibrate_power_k_phase_a()
+void rn8209c_calibrate_power_k_phase_a(void)
 {
 	 rn8209c_calibrate_power_k(phase_A,Stu8209c.Ku, Stu8209c.Kia);
 }
-void rn8209c_calibrate_power_k_phase_b()
+void rn8209c_calibrate_power_k_phase_b(void)
 {
 	 rn8209c_calibrate_power_k(phase_B,Stu8209c.Ku, Stu8209c.Kib);
 }
@@ -214,7 +226,7 @@ static uint8_t s_rn8209c_read(unsigned char wReg,unsigned char *pBuf,unsigned ch
 
         if(temp!=chksum)
         {
-            rn8209c_debug("error reREG_  checksum 2:%d-%d -cmd:0x%x times:%d\n",temp,chksum,wReg,RN8209_CMD_REPEAT_TIMES-Repeat);
+            rn8209c_debug("error reREG_  checksum 2:%d-%d -cmd:0x%x times:%d\r\n",temp,chksum,wReg,RN8209_CMD_REPEAT_TIMES-Repeat);
             err = 2;
             //for(i = ucLen; i > 0; i--) pBuf[i-1] = 0;
             for(i = ucLen; i > 0; i--) pBuf[ucLen-i] = 0;
@@ -364,7 +376,7 @@ static uint8_t s_rn8209c_calc_crc(uint8_t *pcrc)
 注意事项：
 日期    ：
 ********************************************************/
-uint8_t rn8209c_init_para( )
+uint8_t rn8209c_init_para(void )
 {
 
     uint8_t regbuf[6];
@@ -677,7 +689,6 @@ void rn8209c_calibrate_power_k(uint8_t phase,uint32_t ku,uint32_t ki)//
     uint16_t GPQx;
 
     err=kp*10000*ku *ki/32768-10000;
-    //rn8209c_debug("error:%d(1000)\r\n",(int)(err*1000));
     //判断是否是负数
     if(err <0)
     {
@@ -703,8 +714,6 @@ void rn8209c_calibrate_power_k(uint8_t phase,uint32_t ku,uint32_t ki)//
     s_rn8209c_write(regGPx[phase],regbuf,2);
     memset(regbuf,0x00,2);
     s_rn8209c_read(regGPx[phase],regbuf,2);
-    //  rn8209c_debug("gpqx:%d-0x%x rd:%x-%x\r\n",GPQx,GPQx,regbuf[0],regbuf[1]);
-
     if(phase == phase_A)
     {
         Stu8209c.GPQA = GPQx;
@@ -782,7 +791,6 @@ static int16_t rn8209c_calc_phs_err(uint8_t phase,uint32_t power_ref)
     for(i=1; i<12; i++)
     {
         regtotal += regtemp[i];
-        // rn8209c_debug("power:%d\r\n",regtemp[i]);
     }
     regtotal /= 11;
 
@@ -796,13 +804,9 @@ static int16_t rn8209c_calc_phs_err(uint8_t phase,uint32_t power_ref)
 
     dtemp=regtotal;
     //err=((1000000000000*kp*regtotal*(1+gpqa)/power_ref)-10000);
-  //  rn8209c_debug("regtotal:%d-power:%d  gpqa:%d  power_ref:%d",regtotal,(uint32_t)(dtemp*10000*kp),gpqa,power_ref);
-
 k=0;//客户的校准方法似乎是错的
     dtemp=dtemp*(kp*100000000)*(1+k)/power_ref - 10000;
     err=(int16_t)dtemp;
-
-    //rn8209c_debug("err:%d -%d-%d(1000)\r\n",err,(int)(dtemp),(int)(dtemp*1000));
     return err;
 }
 /* 3 .0 将校表台电压设置220V,5A，0.5L*/
@@ -825,7 +829,6 @@ void rn8209c_calibrate_phs(uint8_t phase,uint32_t power_ref)
     int16_t err;
 
     while(0!=s_rn8209c_read(regGPx[phase],regbuf,1));
-    //rn8209c_debug("regbuf:%d\r\n",regbuf[0]);
     if(0!=regbuf[0])
     {
         //写使能
@@ -836,11 +839,9 @@ void rn8209c_calibrate_phs(uint8_t phase,uint32_t power_ref)
         s_rn8209c_write(regGPx[phase],regbuf,1);
     }
     err=rn8209c_calc_phs_err(phase,power_ref);
-   // rn8209c_debug("err:%d\r\n",err);
     k=-err;
     k = asin(k/10000.0/1.732)*180/3.142;
 
-    //rn8209c_debug("k is:%d(1000)\r\n",(int)(k*1000));
     if(k > 0)
     {
         k = (k/0.02);
@@ -851,7 +852,6 @@ void rn8209c_calibrate_phs(uint8_t phase,uint32_t power_ref)
     }
 
     phsValue=(uint8_t)k;
-    // rn8209c_debug("phsValue is:%d-%d(1000) \r\n",phsValue,(int)(k*1000));
     regbuf[0] = 0xE5;
     s_rn8209c_write(REG_WriteEn,regbuf,1);
     rn8209c_delay_ms(10);
@@ -938,7 +938,6 @@ void rn8209c_calibrate_power_offset(uint8_t phase,uint32_t power_ref)
     power_real=power_ref/(kp*10000);
     power_reg=regtotal;
     k = (power_real-power_reg)/(1+gGPQx);
-    // rn8209c_debug("power real:%d(10000),power_reg:%d(10000) gpqx:%d(10000) k:%d(10000) \r\n",(int32_t)(power_real*10000),(int32_t)(power_reg*10000),(int32_t)(gGPQx*10000),(int32_t)(k*10000));
     if(k > 0)
     {
         temp = (uint16_t)k;
@@ -1007,7 +1006,6 @@ void rn8209c_calibrate_power_Q(uint8_t phase, uint32_t power_q_ref)
     //第一个数据不要
     for(i=1; i<12; i++)
     {
-        //rn8209c_debug("powerQ:%d\r\n",regtemp[i]);
         regtotal += regtemp[i];
     }
     no_power = regtotal;
@@ -1015,7 +1013,6 @@ void rn8209c_calibrate_power_Q(uint8_t phase, uint32_t power_q_ref)
     err=power_q_ref;
     err = no_power/err-1;
 
-    //rn8209c_debug("power q err:%d(10000)\r\n",(uint32_t)(err*10000));
     err=err*0.5774;
 
     if(err > 0)
@@ -1028,7 +1025,6 @@ void rn8209c_calibrate_power_Q(uint8_t phase, uint32_t power_q_ref)
         Qphs = (uint16_t)(err*32768+65536);
 
     }
-    // rn8209c_debug("power q Qphs:%d \r\n",Qphs);
     Stu8209c.Cst_QPhsCal=Qphs;
 
     regbuf[0] = Qphs>>8;
@@ -1037,7 +1033,6 @@ void rn8209c_calibrate_power_Q(uint8_t phase, uint32_t power_q_ref)
     rn8209c_delay_ms(10);
     memset(regbuf,0x00,2);
     s_rn8209c_read(REG_QPHSCAL,regbuf,2);
-    // rn8209c_debug("qphs:%d rd:%x-%x\r\n",Qphs,regbuf[0],regbuf[1]);
 
 }
 
@@ -1108,7 +1103,22 @@ void rn8209c_calibrate_current_offset(uint8_t phase)
         Stu8209c.IBRMSOS= temp;
     }
 }
+//read energy
+uint8_t rn8209c_read_energy(uint32_t *energy)//
+{
+    uint8_t  regbuf[3];
+    uint32_t tempValue;
 
+    if(s_rn8209c_read(REG_EnergyP,regbuf,3)==0)
+    {
+        tempValue = (regbuf[0]<<16)+(regbuf[1]<<8)+(regbuf[2]);
+	*energy = tempValue;
+        return 0;
+    }
+
+    return 1;
+
+}
 /********************************************************
 功能描述：
 参数说明：
@@ -1139,7 +1149,6 @@ uint8_t rn8209c_read_voltage(uint32_t *vol)//
             dtemp=tempValue;
 
             *vol = (uint32_t)(dtemp*1000/Stu8209c.Ku);
-            // rn8209c_debug("vol:%d-%d ",tempValue,*vol);//18570
         }
         return 0;
     }
@@ -1186,7 +1195,6 @@ uint8_t rn8209c_read_current(uint8_t phase,uint32_t *current)
 
                 *current = (uint32_t)(dtemp*10000/Stu8209c.Kib);
             }
-            // rn8209c_debug("crt:%d-%d ",tempValue,*current);//136702
         }
         return 0;
     }
@@ -1226,7 +1234,6 @@ uint8_t rn8209c_read_power(uint8_t phase,uint32_t *p)
 
         dtemp=tempValue;
         *p = (uint32_t)(dtemp*10000*kp);
-      //   rn8209c_debug("read power:%d-%d\r\n",tempValue,*p);
         return 0;
     }
 

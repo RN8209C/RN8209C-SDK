@@ -231,7 +231,29 @@ void rn8209_process(uint8_t cmd_mode)
 						cJSON_Delete(resp);
 					}
 					else if(inquire->valueint == 3)
-					{	
+					{
+					 	//20210611 by ysh, read chip power after recv read cmd,to get current power info
+						rn8209c_read_voltage(&rn8209_value.voltage);
+						{
+							uint8_t ret = rn8209c_read_emu_status();
+							if(ret)
+							{
+								uint32_t temp_current=0 ;
+								uint32_t temp_power=0 ;
+								rn8209c_read_current(phase_A,&temp_current);
+								rn8209c_read_power(phase_A,&temp_power);
+								if(ret==1)
+								{
+									rn8209_value.current = temp_current;
+									rn8209_value.power  = temp_power;
+								}
+								else
+								{
+									rn8209_value.current = (int32_t)temp_current*(-1);
+									rn8209_value.power = (int32_t)temp_power *(-1);
+								}
+							}
+						}
 						cJSON *resp = cJSON_CreateObject();
 						cJSON_AddNumberToObject(resp,"inquire",3);
 						cJSON_AddNumberToObject(resp,"voltage",rn8209_value.voltage);

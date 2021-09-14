@@ -17,3 +17,7 @@ The provided SDK includes two parts, one part is the driver and calibration meth
 
 6.	“Led.c” is an example file of the led controlling.
 
+
+## add nrf52832 example prj
+   in dir example_prj_52832 ,have a example prj ,this prj work in nrfsdk 13。 
+

@@ -34,7 +34,7 @@ void set_user_param(STU_8209C param)
 	memcpy(type,DEV_NAME,strlen(DEV_NAME)+1);
 	memcpy(ver,FIRMWARE_VERSION,strlen(FIRMWARE_VERSION)+1);
 
-	rn8209c_debug("the ver is ------------%s\n",ver);
+	rn8209c_debug("the rn8209c SDK ver is %s\n",SDK_VER);
 }
 
 /*********************************芯片驱动接口函数*************************************/

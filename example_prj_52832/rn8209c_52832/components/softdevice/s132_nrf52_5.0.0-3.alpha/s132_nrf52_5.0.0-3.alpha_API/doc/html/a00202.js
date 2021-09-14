@@ -1,0 +1,8 @@
+var a00202 =
+[
+    [ "BLE_GAP_KP_NOT_TYPE_PASSKEY_CLEAR", "a00202.html#ga0fa302ca8f4547e3543b1e4659f773b7", null ],
+    [ "BLE_GAP_KP_NOT_TYPE_PASSKEY_DIGIT_IN", "a00202.html#ga9c8ac3cce712cf138e18f10d7d0de49d", null ],
+    [ "BLE_GAP_KP_NOT_TYPE_PASSKEY_DIGIT_OUT", "a00202.html#ga2234516562bbb91cee5e65e3c67012a3", null ],
+    [ "BLE_GAP_KP_NOT_TYPE_PASSKEY_END", "a00202.html#gaefc1230bf791695ee67d28e3542df206", null ],
+    [ "BLE_GAP_KP_NOT_TYPE_PASSKEY_START", "a00202.html#ga19fd7e5f8c2099ce9ec4f4fceb7af045", null ]
+];

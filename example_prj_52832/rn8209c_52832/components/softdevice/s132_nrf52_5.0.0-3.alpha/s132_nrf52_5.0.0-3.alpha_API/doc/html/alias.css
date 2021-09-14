@@ -1,0 +1,129 @@
+span.gref
+{
+  font-weight: bold;
+}
+
+div.gitem
+{
+  font-weight: bold;
+  text-align:center;
+}
+
+span.gitem_cap_out
+{
+  border:none;
+}
+
+span.gitem_cap_over
+{
+  background-color:AliceBlue;
+  border:solid 1px black;
+}
+
+div.nrf_draft
+{
+  padding-left:20px;
+  color:red
+}
+
+a.nrf_bib
+{
+  text-decoration:none;
+  color:blue
+}
+
+table.nrf_col td
+{
+  vertical-align:top
+}
+
+table.nrf_table tr td, table.nrf_table tr th
+{
+  border : solid 1px black;
+  font-size:10pt;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+table.nrf_table tr td
+{
+  text-align: left;
+}
+table.nrf_table tr th
+{
+  text-align: center;
+}
+
+tr.nrf_tr, table.nrf_table tr th
+{
+  background: aliceblue;
+  font-size:10pt
+}
+
+td.nrf_na
+{
+  font-size: 8pt;
+  color:white;
+}
+
+table.nrf_rev_table
+{
+  border: solid 2px black;
+}
+
+table.nrf_rev_table tr td
+{
+  border: solid 1px black;
+}
+
+table.nrf_rev_table tr td div
+{
+  padding-bottom:5px;
+}
+
+table.nrf_rev_table tr td
+{
+  padding-top:5px;
+  padding-left:5px;
+}
+
+h1 a, h2 a, h3 a{
+  color: #153788;
+}
+
+a {
+  color: #1b77c5;
+}
+
+a:hover, .contents a:visited:hover {
+  color: black;
+  text-decoration:none;
+}
+
+h1 {
+  z-index:-1;
+  text-align: left;
+  position:relative;
+  left:-10px;
+  font-size: 250%;
+}
+
+h2 {
+  z-index:-1;
+  position:relative;
+  left:-10px;
+  font-size: 150%;
+  border-bottom:solid 1px #153788;
+}
+
+h3 {
+  z-index:-1;
+  position:relative;
+  left:-5px;
+  font-size: 120%;
+}
+
+div.contents {
+  max-width: 800px;
+  padding-left: 20px;
+}

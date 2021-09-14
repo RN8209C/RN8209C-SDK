@@ -24,9 +24,9 @@ struct rn8209c_flash
 {
     uint8_t init;
     STU_8209C param;
-};
+}__attribute__((packed));
 
 extern struct rn8209c_flash stu8209c_flash;
-void read_rn8209_param();
-void write_rn8209_param();
+void read_rn8209_param(void);
+void write_rn8209_param(void);
 #endif

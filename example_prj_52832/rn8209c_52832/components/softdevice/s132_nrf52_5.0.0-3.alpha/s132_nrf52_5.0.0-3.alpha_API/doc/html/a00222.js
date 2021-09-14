@@ -1,0 +1,4 @@
+var a00222 =
+[
+    [ "BLE_GATTC_WRITE_CMD_TX_QUEUE_SIZE_DEFAULT", "a00222.html#ga69f687406bf0920a6dea307b705640db", null ]
+];

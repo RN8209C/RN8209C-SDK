@@ -1,0 +1,25 @@
+var a00404 =
+[
+    [ "Fault ID ranges", "a00252.html", "a00252" ],
+    [ "Fault ID types", "a00253.html", "a00253" ],
+    [ "Clock accuracy", "a00254.html", "a00254" ],
+    [ "Possible LFCLK oscillator sources", "a00255.html", "a00255" ],
+    [ "SD_BUGFIX_VERSION", "a00404.html#gaf3636627dceef01b2b09f6e053e50dc1", null ],
+    [ "SD_FWID_GET", "a00404.html#gab5952af335f9794ce1dea58e971fd2b0", null ],
+    [ "SD_FWID_OFFSET", "a00404.html#gaaeb986ec22f9d0f8078b4cc72af678e8", null ],
+    [ "SD_ID_GET", "a00404.html#ga89a210557d28f3756659bc305965da42", null ],
+    [ "SD_ID_OFFSET", "a00404.html#gac2c360c58a242ebd684d144107fd7021", null ],
+    [ "SD_INFO_STRUCT_SIZE_GET", "a00404.html#gaa1ba088a3c005b2a3b79608444773809", null ],
+    [ "SD_INFO_STRUCT_SIZE_OFFSET", "a00404.html#ga0b556931f4f62e8644db2ecac58d2819", null ],
+    [ "SD_MAJOR_VERSION", "a00404.html#ga133b1578cb600f091d96256b17132f4e", null ],
+    [ "SD_MINOR_VERSION", "a00404.html#ga3fa4150fa189d44579daae0fcc1a54ef", null ],
+    [ "SD_SIZE_GET", "a00404.html#ga6127729e509af1507f2ec7264ca9127c", null ],
+    [ "SD_SIZE_OFFSET", "a00404.html#gab7516549adb41718fe920cb262c108dd", null ],
+    [ "SD_VERSION", "a00404.html#gaa8cfc1717fb1c35dccbd6cac6e9f54a4", null ],
+    [ "SD_VERSION_GET", "a00404.html#ga094f0ac1af98b519fab9138593ab1180", null ],
+    [ "SD_VERSION_OFFSET", "a00404.html#ga707f3f60beea1e01c5f2e640b5193901", null ],
+    [ "SDM_INFO_FIELD_INVALID", "a00404.html#gac889b20f9ad992e63d1ac1a818a63dd5", null ],
+    [ "SDM_SVC_BASE", "a00404.html#gaa620a383a50dd98d8319832cedc20a19", null ],
+    [ "SOFTDEVICE_INFO_STRUCT_ADDRESS", "a00404.html#gad8fec8c13f31f43d98916be2de5599e2", null ],
+    [ "SOFTDEVICE_INFO_STRUCT_OFFSET", "a00404.html#gaaa4ad9dc8ecee6374573270fd79dfb26", null ]
+];

@@ -1,0 +1,25 @@
+var a00340 =
+[
+    [ "GATTS ATT Table Population", "a00341.html", null ],
+    [ "GATTS Read Request without Authorization", "a00342.html", null ],
+    [ "GATTS Write Request without Authorization", "a00343.html", null ],
+    [ "GATTS Write Command Without Authorization", "a00344.html", null ],
+    [ "GATTS Write Command With Authorization", "a00345.html", null ],
+    [ "GATTS Read Request with Authorization", "a00346.html", null ],
+    [ "GATTS Write Request with Authorization", "a00347.html", null ],
+    [ "GATTS Queued Writes: Stack handled, no attributes require authorization", "a00348.html", null ],
+    [ "GATTS Queued Writes: Stack handled, one or more attributes require authorization", "a00349.html", null ],
+    [ "GATTS Queued Writes: App handled, no attributes require authorization", "a00350.html", null ],
+    [ "GATTS Queued Writes: App handled, one or more attributes require authorization", "a00351.html", null ],
+    [ "GATTS Queued Writes: Peer cancels operation", "a00352.html", null ],
+    [ "GATTS Queued Writes: Prepare Queue Full", "a00353.html", null ],
+    [ "GATTS Queued Writes: Execute Write without Prepare Write", "a00354.html", null ],
+    [ "GATTS ATT_MTU Exchange", "a00355.html", null ],
+    [ "GATTS Handle Value Indication", "a00356.html", null ],
+    [ "GATTS Handle Value Notification", "a00357.html", null ],
+    [ "GATTS Handle Value Indication or Notification disabled", "a00358.html", null ],
+    [ "GATTS Handle Value Indication or Notification with System Attributes Missing", "a00359.html", null ],
+    [ "GATTS Service Changed", "a00360.html", null ],
+    [ "GATTS System Attributes Handling: Unknown Peer", "a00361.html", null ],
+    [ "GATTS System Attributes Handling: Bonded Peer", "a00362.html", null ]
+];

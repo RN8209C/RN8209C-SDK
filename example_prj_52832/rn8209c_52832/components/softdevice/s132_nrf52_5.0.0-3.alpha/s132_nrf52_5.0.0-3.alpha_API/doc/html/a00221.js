@@ -1,0 +1,5 @@
+var a00221 =
+[
+    [ "BLE_GATTC_ATTR_INFO_FORMAT_128BIT", "a00221.html#ga5f7dd0e9677bac47c656610407b2ba44", null ],
+    [ "BLE_GATTC_ATTR_INFO_FORMAT_16BIT", "a00221.html#ga46f28b888b96db3e1fcc6217808f7bb3", null ]
+];

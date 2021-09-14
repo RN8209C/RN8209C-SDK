@@ -1,0 +1,4 @@
+var a00231 =
+[
+    [ "BLE_GATTS_SERVICE_CHANGED_DEFAULT", "a00231.html#ga75a7251c582883e803de77970c4af7dc", null ]
+];

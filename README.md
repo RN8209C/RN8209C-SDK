@@ -1,6 +1,8 @@
 # RN8209C-SDK
 MOKO provides power metering SDK based on RN8209C chip
 
+##note
+Please use the SDK according to the porting interface to avoid usage problems
 
 ## Introduction of provided files
 The provided SDK includes two parts, one part is the driver and calibration method of RN8209C, another is the calibration and application method based on MOKO hardware and software.

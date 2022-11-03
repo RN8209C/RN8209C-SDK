@@ -5,6 +5,10 @@
 #include "nrf_drv_timer.h"
 #include "bsp.h"
 #include "app_error.h"
+
+#include "dev_cfg.h"
+#include "hardware_config.h"
+
 #define USER_DEBUG 1
 #if USER_DEBUG
 #define USER_RTT(...) 	SEGGER_RTT_printf(0,__VA_ARGS__);//fprintf(stdout, ">>>>>" format "<<<<", ##__VA_ARGS__)  
@@ -12,10 +16,19 @@
 #define USER_RTT(...)
 #endif
 
+#ifdef MK114B
 #define 	SIMULATE_TX_PIN	14//22//14
 #define 	SIMULATE_RX_PIN	13//20//13
+#endif
+
+#ifdef MK117B
+#define 	SIMULATE_TX_PIN	 current_pin.rn8209c_tx//22//14
+#define 	SIMULATE_RX_PIN	 current_pin.rn8209c_rx//20//13
+#endif
+
+
 #define 	PARITY_NONE	0
-#define	PARITY_EVEN	1
+#define	    PARITY_EVEN	1
 #define 	PARITY_ODD	2
 
 #define SIMULATE_TX_BUF_LEN	300

@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "dev_cfg.h": "c",
+        "key_led_relay.h": "c",
+        "app_error.h": "c",
+        "sdk_common.h": "c",
+        "hardware_config.h": "c"
+    }
+}

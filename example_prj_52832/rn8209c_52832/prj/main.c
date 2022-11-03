@@ -8,10 +8,7 @@
 #include "simulate_uart.h"
 #include "system_time.h"
 #include "rn8209c_user.h"
-
-
-
-
+#include "hardware_config.h"
 
 void Open32768(void)
 {
@@ -28,6 +25,7 @@ void Open32768(void)
 }
 int main(void)
 {
+    hardware_choose_init();
 	app_timer_init();
 	sysTime_Init();
 	Open32768();

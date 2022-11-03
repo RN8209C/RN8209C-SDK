@@ -149,7 +149,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>6</TargetSelection>
+          <TargetSelection>4</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -224,6 +224,8 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
             <RvdsMve>0</RvdsMve>
+            <RvdsCdeCp>0</RvdsCdeCp>
+            <nBranchProt>0</nBranchProt>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -313,7 +315,7 @@
               </OCR_RVCT3>
               <OCR_RVCT4>
                 <Type>1</Type>
-                <StartAddress>0x1f000</StartAddress>
+                <StartAddress>0x0</StartAddress>
                 <Size>0x25800</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
@@ -377,7 +379,7 @@
               <MiscControls>--c99 --reduce_paths</MiscControls>
               <Define>BLE_STACK_SUPPORT_REQD BOARD_PCA10040 NRF52 NRF52832_XXAA NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_20 NRF52_PAN_31 NRF52_PAN_36 NRF52_PAN_51 NRF52_PAN_54 NRF52_PAN_55 NRF52_PAN_58 NRF52_PAN_64 NRF52_PAN_74 NRF_SD_BLE_API_VERSION=4 S132 SOFTDEVICE_PRESENT SWI_DISABLE0 NRF_LOG_USES_RTT</Define>
               <Undefine></Undefine>
-              <IncludePath>..\components\libraries\util;..\components\drivers_nrf\hal;..\components\device;..\components\boards;..\Include;..\band_kerwin;..\components\toolchain;..\components\softdevice\s132\headers;..\components\ble\common;.\config;..\components\ble\ble_advertising;..\components\softdevice\common\softdevice_handler;..\components\libraries\button;..\components\ble\nrf_ble_gatt;..\components\libraries\timer;..\components\ble\ble_services\ble_nus;..\components\libraries\log;..\components\libraries\uart;..\components\libraries\log\src;..\components\libraries\bsp;.\config;..\components\drivers_nrf\timer;..\components\libraries\strerror;..\components\libraries\fstorage;..\components\drivers_nrf\common;..\components\libraries\experimental_section_vars;..\components\drivers_nrf\gpiote;..\components\drivers_nrf\delay;..\components\libraries\fifo;..\components\libraries\experimental_section_vars;..\external\segger_rtt;..\components\drivers_nrf\clock;..\components\drivers_nrf\uart;..\moudle\segger_rtt;..\prj;..\moudle\ble_fifo;..\moudle\sem;..\moudle\ui;..\moudle\s110_src;..\components\ble\ble_services\ble_ancs_c;..\components\ble\ble_db_discovery;..\components\ble\peer_manager;..\components\libraries\fds;..\components\ble\ble_db_discovery;..\components\ble\peer_manager;..\components\libraries\scheduler;..\moudle\boot;..\moudle\inflashmanage;..\moudle\softrtc;..\moudle\wdt;..\moudle\sport;..\moudle\battery;..\moudle\sport;..\components\libraries\csense;..\components\libraries\csense_drv;..\components\drivers_nrf\saadc;..\components\drivers_nrf\hal;..\components\drivers_nrf\spi_master;..\moudle\sport\hr;..\moudle\protocol;..\moudle\upfile;..\moudle\hrs3000;..\moudle\iic;..\moudle\oled;..\components\toolchain\cmsis\include;..\moudle\inflashmanage;..\moudle\dfu;..\moudle\gpio;..\moudle\simulate_uart;..\components\drivers_nrf\timer;..\moudle\sys_time;..\moudle\CJSON;..\moudle\rn8209c;..\moudle\user;..\components\drivers_nrf\twi_master;..\moudle\energy_count;..\moudle\24C32;..\moudle\sys_lib</IncludePath>
+              <IncludePath>..\components\libraries\util;..\components\drivers_nrf\hal;..\components\device;..\components\boards;..\Include;..\band_kerwin;..\components\toolchain;..\components\softdevice\s132\headers;..\components\ble\common;.\config;..\components\ble\ble_advertising;..\components\softdevice\common\softdevice_handler;..\components\libraries\button;..\components\ble\nrf_ble_gatt;..\components\libraries\timer;..\components\ble\ble_services\ble_nus;..\components\libraries\log;..\components\libraries\uart;..\components\libraries\log\src;..\components\libraries\bsp;.\config;..\components\drivers_nrf\timer;..\components\libraries\strerror;..\components\libraries\fstorage;..\components\drivers_nrf\common;..\components\libraries\experimental_section_vars;..\components\drivers_nrf\gpiote;..\components\drivers_nrf\delay;..\components\libraries\fifo;..\components\libraries\experimental_section_vars;..\external\segger_rtt;..\components\drivers_nrf\clock;..\components\drivers_nrf\uart;..\moudle\segger_rtt;..\prj;..\moudle\ble_fifo;..\moudle\sem;..\moudle\ui;..\moudle\s110_src;..\components\ble\ble_services\ble_ancs_c;..\components\ble\ble_db_discovery;..\components\ble\peer_manager;..\components\libraries\fds;..\components\ble\ble_db_discovery;..\components\ble\peer_manager;..\components\libraries\scheduler;..\moudle\boot;..\moudle\inflashmanage;..\moudle\softrtc;..\moudle\wdt;..\moudle\sport;..\moudle\battery;..\moudle\sport;..\components\libraries\csense;..\components\libraries\csense_drv;..\components\drivers_nrf\saadc;..\components\drivers_nrf\hal;..\components\drivers_nrf\spi_master;..\moudle\sport\hr;..\moudle\protocol;..\moudle\upfile;..\moudle\hrs3000;..\moudle\iic;..\moudle\oled;..\components\toolchain\cmsis\include;..\moudle\inflashmanage;..\moudle\dfu;..\moudle\gpio;..\moudle\simulate_uart;..\components\drivers_nrf\timer;..\moudle\sys_time;..\moudle\CJSON;..\moudle\rn8209c;..\moudle\user;..\components\drivers_nrf\twi_master;..\moudle\energy_count;..\moudle\24C32;..\moudle\sys_lib;..\components\drivers_nrf\pwm;..\components</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -390,7 +392,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <uClangAs>0</uClangAs>
+            <ClangAsOpt>4</ClangAsOpt>
             <VariousControls>
               <MiscControls> --cpreproc_opts=-DBLE_STACK_SUPPORT_REQD,-DBOARD_PCA10040,-DCONFIG_GPIO_AS_PINRESET,-DNRF52,-DNRF52832_XXAA,-DNRF52_PAN_12,-DNRF52_PAN_15,-DNRF52_PAN_20,-DNRF52_PAN_31,-DNRF52_PAN_36,-DNRF52_PAN_51,-DNRF52_PAN_54,-DNRF52_PAN_55,-DNRF52_PAN_58,-DNRF52_PAN_64,-DNRF52_PAN_74,-DNRF_SD_BLE_API_VERSION=4,-DS132,-DSOFTDEVICE_PRESENT,-DSWI_DISABLE0</MiscControls>
               <Define>BLE_STACK_SUPPORT_REQD BOARD_PCA10040 CONFIG_GPIO_AS_PINRESET NRF52 NRF52832_XXAA NRF52_PAN_12 NRF52_PAN_15 NRF52_PAN_20 NRF52_PAN_31 NRF52_PAN_36 NRF52_PAN_51 NRF52_PAN_54 NRF52_PAN_55 NRF52_PAN_58 NRF52_PAN_64 NRF52_PAN_74 NRF_SD_BLE_API_VERSION=4 S132 SOFTDEVICE_PRESENT SWI_DISABLE0</Define>
@@ -491,6 +493,11 @@
               <FileType>1</FileType>
               <FilePath>..\moudle\sem\utility.c</FilePath>
             </File>
+            <File>
+              <FileName>hardware_config.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\moudle\sys_lib\hardware_config.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -540,6 +547,11 @@
               <FileName>nrf_drv_timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\components\drivers_nrf\timer\nrf_drv_timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>nrf_drv_pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\components\drivers_nrf\pwm\nrf_drv_pwm.c</FilePath>
             </File>
           </Files>
         </Group>

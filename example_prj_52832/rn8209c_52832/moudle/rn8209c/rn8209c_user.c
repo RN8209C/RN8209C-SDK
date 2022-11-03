@@ -79,7 +79,7 @@ static void s_rn8209c_uart_init(void)
 static void s_rn8209c_pin_restart(void)
 {
 
-	#define GPIO_TX_PIN 14
+	#define GPIO_TX_PIN current_pin.rn8209c_tx
 	nrf_gpio_cfg_output(GPIO_TX_PIN);
 
     nrf_gpio_pin_clear(GPIO_TX_PIN);
@@ -107,7 +107,7 @@ static int cmd_uart_rx(uint8_t *dataout,int len,int time_out)
 
 bool init_8209c_interface(void)
 {
-//Stu8209c  结构体赋值
+//Stu8209c  锟结构锟藉赋值
     return  rn8209c_init(s_delay_ms,\
                          s_uart_tx ,\
                          s_uart_rx,\

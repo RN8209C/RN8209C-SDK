@@ -19,6 +19,7 @@
 #include "driver/uart.h"
 #include "rn8209_flash.h"
 #include "cJSON.h"
+#include "dev_cfg.h"
 
 static STU_8209C stu8209c_user;
 struct rn8209 rn8209_value;
@@ -103,11 +104,14 @@ static void calibrate_success_deal( )
 {
 	stu8209c_flash.param = stu8209c_user;
     write_rn8209_param();
-	rn8209c_debug("calibrate_success_deal\n");
+	LED_ALL_OFF;
+	LED_BLUE_ON;
+   //  rn8209c_debug("ku is %d,ki is %d,gpqa is %d,phsa id %d\n",stu8209c_user.param.Ku,stu8209c_user.param.Kia,stu8209c_user.param.GPQA,stu8209c_user.param.PhsA);
 }
 static void calibrate_false_deal( )
 {
-	rn8209c_debug("ERROR calibrate_false_deal\n");
+	LED_ALL_OFF;
+	LED_RED_ON;
 }
 static void user_control()
 {
@@ -115,7 +119,8 @@ static void user_control()
 }
 void calibrate_start_deal()
 {
-	rn8209c_debug("calibrate_start_deal...\n");
+	LED_ALL_OFF;
+	LED_PURPLE_ON;
 }
 void relay_open()
 {
